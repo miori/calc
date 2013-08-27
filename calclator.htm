@@ -1,0 +1,85 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CALUCLATOR</title>
+</head>
+
+<body>
+
+<script type="text/javascript">
+number = "";
+type_bk = "";
+type = "";
+number_set = "";
+
+function Clear(){
+	number = "";
+	type_bk = "";
+	type = "";
+	number_set = "";
+	document.form.text.value = "0";
+}
+
+function Value(input){
+	if(number == "0"){
+		number = number.replace("0","");
+	}
+	number += input;
+	document.form.text.value = number;
+}
+
+function Math(type){
+	if(number == "" && type != "-"){
+		document.form.text.value = "0";
+	}else if(type_bk != ""){
+		number = eval(number) + type;
+		total = number;
+		type_bk = type;
+		document.form.text.value = total;
+	}else{
+		number += type;
+		type_bk = type;
+		document.form.text.value = number;
+	}
+}
+
+function Calc(){
+	if(number != "" && type_bk != ""){
+		total = eval(number);
+		document.form.text.value = total;
+		number = "";
+	}
+}
+
+</script>
+
+	<table border="1" bordercolor="gray" rules="none">
+	<FORM NAME="form">
+	<INPUT TYPE="text" NAME="text" VALUE="0" style="width:220px;height:50px;text-align:right;font-size:22">
+	<TR>
+		<TD ALIGN="center"><INPUT TYPE="button" VALUE="7" style="width:50px;height:50px" onClick="Value('7')"></TD>
+		<TD ALIGN="center"><INPUT TYPE="button" VALUE="8" style="width:50px;height:50px" onClick="Value('8')"></TD>
+		<TD ALIGN="center"><INPUT TYPE="button" VALUE="9" style="width:50px;height:50px" onClick="Value('9')"></TD>
+		<TD ALIGN="center"><INPUT TYPE="button" VALUE="*" style="width:50px;height:50px" onClick="Math('*')"></TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center"><INPUT TYPE="button" VALUE="4" style="width:50px;height:50px" onClick="Value('4')"></TD>
+		<TD ALIGN="center"><INPUT TYPE="button" VALUE="5" style="width:50px;height:50px" onClick="Value('5')"></TD>
+		<TD ALIGN="center"><INPUT TYPE="button" VALUE="6" style="width:50px;height:50px" onClick="Value('6')"></TD>
+		<TD ALIGN="center"><INPUT TYPE="button" VALUE="/" style="width:50px;height:50px" onClick="Math('/')"></TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center"><INPUT TYPE="button" VALUE="1" style="width:50px;height:50px" onClick="Value('1')"></TD>
+		<TD ALIGN="center"><INPUT TYPE="button" VALUE="2" style="width:50px;height:50px" onClick="Value('2')"></TD>
+		<TD ALIGN="center"><INPUT TYPE="button" VALUE="3" style="width:50px;height:50px" onClick="Value('3')"></TD>
+		<TD ALIGN="center"><INPUT TYPE="button" VALUE="-" style="width:50px;height:50px" onClick="Math('-')"></TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center"><INPUT TYPE="button" VALUE="0" style="width:50px;height:50px" onClick="Value('0')"></TD>
+		<TD ALIGN="center"><INPUT TYPE="button" VALUE="C" style="width:50px;height:50px" onClick="Clear()"></TD>
+		<TD ALIGN="center"><INPUT TYPE="button" VALUE="=" style="width:50px;height:50px" onClick="Calc()"></TD>
+		<TD ALIGN="center"><INPUT TYPE="button" VALUE="+" style="width:50px;height:50px" onClick="Math('+')"></TD>
+	</TR>
+	</FORM>
+	</table>
+</body>
